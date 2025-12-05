@@ -38,6 +38,14 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/service/:id", async (req, res) => {
+      const id = req.params.id;
+      
+      const service = await serviceCollection.findOne({ _id: new ObjectId(id) });
+      res.send(service);
+    });
+
+
 
     // Test ping
     await client.db("admin").command({ ping: 1 });
